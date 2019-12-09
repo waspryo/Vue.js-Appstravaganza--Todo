@@ -18,8 +18,10 @@
     </form>
     <ul class="list-group mt-3">
       <li v-for="todo in todos" class="list-group-item">
-        <button type="button" class="btn btn-primary">Done</button>
-        {{ todo.title }}
+        <button @click="markDone(todo)" type="button" class="btn btn-primary">Done</button>
+        <span :class="{
+            isDone: todo.done
+          }">{{ todo.title }}</span>
       </li>
     </ul>
   </div>
@@ -41,10 +43,16 @@ export default {
         done: false
       });
       this.newTodo = ''
+    },
+    markDone(todo) {
+      todo.done = true
     }
   }
 };
 </script>
 
 <style>
+.isDone {
+  text-decoration:line-through;
+}
 </style>
