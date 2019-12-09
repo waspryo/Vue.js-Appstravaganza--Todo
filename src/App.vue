@@ -16,8 +16,11 @@
       </div>
       <button type="submit" class="btn btn-primary">Add todo</button>
     </form>
-    <ul class="list-group">
-      <li  v-for="todo in todos" class="list-group-item">{{ todo }}</li>
+    <ul class="list-group mt-3">
+      <li v-for="todo in todos" class="list-group-item">
+        <button type="button" class="btn btn-primary">Done</button>
+        {{ todo.title }}
+      </li>
     </ul>
   </div>
 </template>
@@ -33,7 +36,11 @@ export default {
   },
   methods: {
     addTodo() {
-      this.todos.push(this.newTodo);
+      this.todos.push({
+        title: this.newTodo,
+        done: false
+      });
+      this.newTodo = ''
     }
   }
 };
