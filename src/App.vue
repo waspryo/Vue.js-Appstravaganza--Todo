@@ -5,6 +5,7 @@
       <div class="form-group">
         <label for="newTodo">New Todo</label>
         <input
+          v-model="newTodo"
           type="text"
           class="form-control"
           id="newTodo"
@@ -15,6 +16,9 @@
       </div>
       <button type="submit" class="btn btn-primary">Add todo</button>
     </form>
+    <ul class="list-group">
+      <li  v-for="todo in todos" class="list-group-item">{{ todo }}</li>
+    </ul>
   </div>
 </template>
 
@@ -22,11 +26,14 @@
 export default {
   name: "app",
   data() {
-    return {};
+    return {
+      newTodo: "",
+      todos: []
+    };
   },
   methods: {
     addTodo() {
-      console.log('form submitted')
+      this.todos.push(this.newTodo);
     }
   }
 };
