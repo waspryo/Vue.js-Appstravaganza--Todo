@@ -17,12 +17,9 @@
       <button type="submit" class="btn btn-primary">Add todo</button>
     </form>
     <ul class="list-group mt-3">
-      <li v-for="todo in todos" class="list-group-item">
-        <button
-          @click="markDone(todo)"
-          v-if="!todo.done"
-          type="button"
-          class="btn btn-primary">Done</button>
+      <li v-for="(todo, i) in todos" class="list-group-item">
+        <button @click="markDone(todo)" v-if="!todo.done" type="button" class="btn btn-primary">Done</button>
+        <button @click="remove(i)" type="button" class="btn btn-danger">Delete</button>
         <span :class="{
             isDone: todo.done
           }">{{ todo.title }}</span>
@@ -46,10 +43,13 @@ export default {
         title: this.newTodo,
         done: false
       });
-      this.newTodo = ''
+      this.newTodo = "";
     },
     markDone(todo) {
-      todo.done = true
+      todo.done = true;
+    },
+    remove(index) {
+      this.todos.splice(index, 1)
     }
   }
 };
@@ -57,6 +57,6 @@ export default {
 
 <style>
 .isDone {
-  text-decoration:line-through;
+  text-decoration: line-through;
 }
 </style>
