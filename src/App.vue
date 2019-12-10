@@ -18,7 +18,11 @@
     </form>
     <ul class="list-group mt-3">
       <li v-for="todo in todos" class="list-group-item">
-        <button @click="markDone(todo)" type="button" class="btn btn-primary">Done</button>
+        <button
+          @click="markDone(todo)"
+          v-if="!todo.done"
+          type="button"
+          class="btn btn-primary">Done</button>
         <span :class="{
             isDone: todo.done
           }">{{ todo.title }}</span>
